@@ -11,34 +11,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
-    /* Design system zant (packages/ui) — tons dérivés des tokens oklch */
-    --primary:#3a6df2;            /* oklch(0.65 0.2 250) */
-    --primary-strong:#2b53c9;
-    --primary-tint:#eaf0fe;
-    --primary-tint-2:#dbe6fd;
+    /* Design system Ovet — tokens repris de packages/ui/src/styles/globals.css */
+    --primary:oklch(0.65 0.2 250);                 /* --primary */
+    --primary-strong:oklch(0.52 0.19 252);         /* primaire foncé, lisible sur teinte */
+    --primary-tint:color-mix(in oklch, var(--primary) 10%, #fff);
+    --primary-tint-2:color-mix(in oklch, var(--primary) 24%, #fff);
 
-    --fam-annual:#e0589a;         /* Adult — rose */
-    --fam-annual-tint:#fceaf2;
-    --fam-health:#16a06b;         /* Health problem — vert */
-    --fam-health-tint:#e6f6ee;
-    --fam-preventive:#2f8fe0;     /* Young — bleu */
-    --fam-preventive-tint:#e6f2fc;
+    /* Couleurs des trois questionnaires — exactement celles de Curatio (envoi SMS).
+       Pastilles : --color-vignette-* du design system. */
+    --fam-annual:#ff809b;         /* Adulte — vignette-annual (rose) */
+    --fam-annual-tint:color-mix(in oklch, #ff809b 7%, #fff);
+    --fam-health:#40d719;         /* Problème de santé — vignette-health (vert) */
+    --fam-health-tint:color-mix(in oklch, #40d719 7%, #fff);
+    --fam-preventive:#b0e0e6;     /* Jeune — vignette-preventive (bleu poudre) */
+    --fam-preventive-tint:color-mix(in oklch, #b0e0e6 9%, #fff);
     --fam-suivi:var(--primary);   /* Suivi — bleu primaire */
     --fam-suivi-tint:var(--primary-tint);
 
-    --bg:#f5f7fa;
-    --card:#ffffff;
-    --border:#e5e8ef;
-    --border-strong:#d3d8e3;
-    --heading:#131a28;
-    --text:#2a3242;
-    --muted:#646e80;
-    --muted-2:#8a93a4;
+    /* Rampe de gris froids (hue 256), comme le design system */
+    --bg:oklch(0.984 0.003 247.858);               /* --background */
+    --card:oklch(1 0 0);                           /* --card */
+    --border:oklch(0.898 0.009 256);               /* --border */
+    --border-strong:oklch(0.86 0.012 256);
+    --heading:oklch(0.145 0.012 256);              /* --foreground */
+    --text:oklch(0.30 0.013 256);
+    --muted:oklch(0.471 0.013 256);                /* --muted-foreground */
+    --muted-2:oklch(0.6 0.012 256);
 
-    --ok:#16a06b;
-    --ok-tint:#e6f6ee;
-    --warn:#c2410c;
-    --warn-tint:#fdeee6;
+    --ok:oklch(0.52 0.1 152);
+    --ok-tint:color-mix(in oklch, oklch(0.52 0.1 152) 10%, #fff);
+    --warn:oklch(0.5 0.1 48);                      /* --priority-urgent */
+    --warn-tint:oklch(0.975 0.014 48);             /* --priority-urgent-bg */
 
     --radius:0.5rem;
     --radius-lg:0.875rem;
@@ -65,14 +68,21 @@
   .hero{
     background:
       radial-gradient(1200px 380px at 85% -10%, rgba(58,109,242,.16), transparent 60%),
-      radial-gradient(900px 320px at 0% 0%, rgba(224,88,154,.10), transparent 55%),
+      radial-gradient(900px 320px at 0% 0%, rgba(255,128,155,.12), transparent 55%),
       linear-gradient(180deg,#ffffff, #f5f7fa);
     border-bottom:1px solid var(--border);
   }
   .hero-inner{padding:54px 20px 46px;max-width:var(--maxw);margin:0 auto}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--heading);letter-spacing:-.01em}
-  .brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(140deg,var(--primary),#6a4df2);
-    display:grid;place-items:center;color:#fff;font-size:15px;box-shadow:var(--shadow-sm)}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--heading);
+    letter-spacing:-.02em;font-size:19px}
+  .brand .mark{flex:none;display:block}
+
+  /* Pastille de type de questionnaire — identique à Curatio (QuestionnaireColorDot) */
+  .qdot{flex:none;width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+  .qdot.adult{background:var(--fam-annual)}
+  .qdot.health{background:var(--fam-health)}
+  .qdot.young{background:var(--fam-preventive)}
+  .qdot.suivi{background:var(--fam-suivi)}
   .eyebrow{margin-top:26px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
     color:var(--primary-strong);background:var(--primary-tint);border:1px solid var(--primary-tint-2);
     padding:5px 11px;border-radius:999px}
@@ -108,8 +118,9 @@
   .grid2{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm)}
   .panel h3{font-size:16px;display:flex;align-items:center;gap:9px}
-  .tag{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
-  .tag.adult{color:var(--fam-annual);background:var(--fam-annual-tint)}
+  .tag{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
+    display:inline-flex;align-items:center;gap:6px}
+  .tag.adult{color:var(--heading);background:var(--fam-annual-tint);border:1px solid color-mix(in oklch,var(--fam-annual) 35%,#fff)}
   .tag.er{color:var(--warn);background:var(--warn-tint)}
   .change{list-style:none;margin:14px 0 0;padding:0}
   .change li{position:relative;padding:11px 0 11px 30px;border-top:1px dashed var(--border)}
@@ -129,8 +140,8 @@
   .ba-idx{flex:none;width:30px;height:30px;border-radius:9px;background:var(--primary);color:#fff;font-weight:700;
     display:grid;place-items:center;font-size:15px;box-shadow:var(--shadow-sm)}
   .ba-title{font-weight:700;color:var(--heading);font-size:16.5px}
-  .ba-scope{margin-left:auto;font-size:12px;font-weight:600;color:var(--muted);background:#f1f3f8;
-    border:1px solid var(--border);padding:3px 10px;border-radius:999px}
+  .ba-scope{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;
+    color:var(--muted);background:#f1f3f8;border:1px solid var(--border);padding:3px 10px;border-radius:999px}
   .ba-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
   .ba-col{padding:18px 20px}
   .ba-col.before{background:#fcfcfd}
@@ -165,16 +176,17 @@
     align-items:center;padding:0 11px;font-size:13.5px;color:var(--text)}
   .input.ph{color:var(--muted-2)}
   .input.removed{color:var(--muted-2);background:#fbfbfc;border-style:dashed;text-decoration:line-through;
-    text-decoration-color:#e0589a;text-decoration-thickness:2px}
-  .field.removed > label{color:var(--muted-2);text-decoration:line-through;text-decoration-color:#e0589a}
+    text-decoration-color:var(--fam-annual);text-decoration-thickness:2px}
+  .field.removed > label{color:var(--muted-2);text-decoration:line-through;text-decoration-color:var(--fam-annual)}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
   .seg{display:flex;gap:6px;flex-wrap:wrap}
   .seg .opt{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--border-strong);
     background:#fff;color:var(--text)}
-  .opt.fam-annual{color:var(--fam-annual);background:var(--fam-annual-tint);border-color:#f3cfe0}
-  .opt.fam-health{color:var(--fam-health);background:var(--fam-health-tint);border-color:#c7ead7}
-  .opt.fam-preventive{color:var(--fam-preventive);background:var(--fam-preventive-tint);border-color:#cfe5f7}
-  .opt.fam-suivi{color:#fff;background:var(--fam-suivi);border-color:var(--fam-suivi)}
+  .opt[class*="fam-"]{color:var(--heading);gap:7px}
+  .opt.fam-annual{background:var(--fam-annual-tint);border-color:color-mix(in oklch,var(--fam-annual) 35%,#fff)}
+  .opt.fam-health{background:var(--fam-health-tint);border-color:color-mix(in oklch,var(--fam-health) 35%,#fff)}
+  .opt.fam-preventive{background:var(--fam-preventive-tint);border-color:color-mix(in oklch,var(--fam-preventive) 45%,#fff)}
+  .opt.fam-suivi{background:var(--fam-suivi-tint);border-color:var(--primary-tint-2)}
   .note-in{margin-top:6px;font-size:12px;color:var(--fam-health);font-weight:600;display:flex;gap:6px;align-items:flex-start}
   .btn{margin-top:6px;height:38px;border-radius:8px;background:var(--primary);color:#fff;font-weight:650;font-size:13.5px;
     display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow-sm)}
@@ -203,8 +215,10 @@
   .wf-field.keep > label{color:#111}
   .wf-box.keep{border:2px solid #111;color:#111;font-weight:600}
   .wf-pills{display:flex;flex-wrap:wrap;gap:7px}
-  .wf-pill{font-size:12px;font-weight:600;padding:5px 12px;border:1.5px solid #777;border-radius:999px;color:#333;background:#fff}
-  .wf-pill.new{border:1.75px solid #111;color:#fff;background:#111}
+  .wf-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:5px 12px;
+    border:1.5px solid #777;border-radius:999px;color:#333;background:#fff}
+  .wf-pill.new{border:1.75px solid #111;color:#111;background:#fff;font-weight:700}
+  .wf-pill .qdot{box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
   .wf-tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.05em;border:1.5px solid #111;
     border-radius:4px;padding:0 5px;margin-left:5px;text-transform:uppercase;vertical-align:middle;color:#111}
   .wf-btn{margin-top:4px;height:38px;border:1.75px solid #111;border-radius:7px;background:#111;color:#fff;
@@ -280,7 +294,12 @@
   <!-- HERO -->
   <header class="hero">
     <div class="hero-inner">
-      <div class="brand"><span class="dot">◆</span> Ovet</div>
+      <div class="brand">
+        <svg class="mark" width="32" height="32" viewBox="0 0 512 512" role="img" aria-label="Ovet" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M208 356.705C182.115 376.011 157.185 388 138.693 388C108.534 388 81.1794 376.1 60.9435 356.413L60.8159 356.285C42.0755 337.458 26.8547 314.98 16.2678 290.048L16.2437 289.991C5.79727 265.009 0 237.632 0 208.771C0 93.3827 93.0932 0 207.949 0C322.682 0 415.886 93.3705 416 208.76V208.771C416 237.652 410.195 265.047 399.631 290.048C389.162 314.961 373.919 337.476 354.931 356.437L354.825 356.54C334.719 376.1 307.365 388 277.206 388C258.814 388 233.889 376.013 208 356.705ZM172.686 326.752C142.391 298.546 113.086 265.856 94.0503 243.502C84.8129 232.726 79.497 220.28 77.7007 207.707C69.4998 151.166 139.328 116.984 180.793 156.516L207.947 184.632L234.805 156.818L235.146 156.494C278.637 115.067 351.06 155.59 336.876 214.202L336.868 214.235C334.353 224.496 329.491 234.471 321.906 243.436L321.869 243.48C302.801 265.786 273.565 298.525 243.302 326.746C247.847 329.926 252.298 332.776 256.615 335.218C264.35 339.593 271.21 342.895 277.206 342.895C295.063 342.895 311.27 335.885 323.233 324.295C337.939 309.571 349.816 292.009 357.986 272.557L357.997 272.534C366.285 252.925 370.819 231.434 370.82 208.782C370.726 118.389 297.838 45.1048 207.949 45.1048C117.977 45.1048 45.1795 118.382 45.1795 208.771C45.1795 231.434 49.7156 252.936 57.9117 272.557C66.1832 292.014 78.0802 309.605 92.8341 324.458C104.75 335.938 120.903 342.895 138.693 342.895C144.733 342.895 151.624 339.596 159.382 335.213C163.698 332.775 168.146 329.928 172.686 326.752ZM207.995 297.921C238.43 270.185 268.312 236.647 287.499 214.203C290.244 210.933 292.05 207.301 292.975 203.548C296.585 188.524 277.937 178.583 266.608 188.872L207.951 249.617C207.951 249.617 148.985 188.565 148.945 188.529C138.317 178.878 120.318 186.838 122.42 201.287L122.425 201.322C123.069 205.849 125.051 210.297 128.401 214.204L128.424 214.232C147.562 236.705 177.526 270.19 207.995 297.921Z" fill="#1F81EB"/>
+        </svg>
+        Ovet
+      </div>
       <div class="eyebrow">Mise à jour du 15 juin 2026 · après notre rencontre</div>
       <h1>Questionnaires plus courts, moins d'abandons</h1>
       <p class="lede">À la suite de notre rencontre du 15 juin, voici les changements apportés aux questionnaires et ceux prévus cette semaine, du point de vue du client.</p>
@@ -294,99 +313,15 @@
 
   <main class="wrap">
 
-    <!-- EN BREF -->
-    <section id="bref">
-      <span class="kicker">En bref</span>
-      <h2>Le questionnaire adulte était trop long</h2>
-      <div class="callout">
-        <p>Les données de production le confirment : le questionnaire adulte comptait environ <strong>65 questions</strong>, soit près de <strong>10 minutes</strong>. <strong>45 questions</strong> étaient posées à tous avant toute personnalisation. Les abandons survenaient au milieu du parcours, le plus souvent dans le bloc « revue des systèmes ».</p>
-        <p>Les changements ci-dessous réduisent la longueur <strong>sans retirer de questions de dépistage</strong> : les questions redondantes sont fusionnées et la saisie au clavier est remplacée par des choix. Les questions de la « revue des systèmes » restent posées à tous, car elles servent à détecter ce que le client ne pense pas toujours à signaler.</p>
-      </div>
-
-      <div class="metrics">
-        <div class="metric accent">
-          <div class="num">74<span class="unit"> %</span></div>
-          <div class="lab">complètent le questionnaire une fois commencé <small>(242 → 178)</small></div>
-        </div>
-        <div class="metric">
-          <div class="num">45</div>
-          <div class="lab">questions posées à tous avant toute personnalisation (adulte)</div>
-        </div>
-        <div class="metric">
-          <div class="num">17<span class="unit">ᵉ</span></div>
-          <div class="lab">question où survient le plus souvent l'abandon</div>
-        </div>
-        <div class="metric">
-          <div class="num">15<span class="unit"> → 9</span></div>
-          <div class="lab">questions fusionnées, sans perte d'information</div>
-        </div>
-        <div class="metric accent">
-          <div class="num">−9<span class="unit"> %</span></div>
-          <div class="lab">de longueur en moins (questionnaire adulte)</div>
-        </div>
-        <div class="metric">
-          <div class="num">5</div>
-          <div class="lab">améliorations livrées, plus 3 correctifs de fiabilité</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CE QUI CHANGE -->
-    <section id="change">
-      <span class="kicker">Ce qui sera en production demain soir (16 juin)</span>
-      <h2>Moins de redondance et moins de saisie, sans retirer de dépistage</h2>
-      <p class="sub">Deux questionnaires concernés : le bilan de l'animal adulte et l'urgence.</p>
-
-      <div class="grid2">
-        <div class="panel">
-          <h3>Questionnaire adulte <span class="tag adult">Bilan annuel</span></h3>
-          <ul class="change">
-            <li>
-              <div class="t">Revue des systèmes conservée</div>
-              <div class="d">Les 13 questions de dépistage restent posées à tous : elles servent à détecter ce que le client ne pense pas toujours à signaler (eau, urine, mobilité, masses cutanées…).</div>
-              <span class="delta">aucune question retirée</span>
-            </li>
-            <li>
-              <div class="t">Questions redondantes fusionnées</div>
-              <div class="d">Sans rien retirer : hygiène dentaire (brossage, autres moyens, griffes) → 1, peau et pelage (grattage, rougeurs, plaies, masses) → 1, poids et début de la perte → 1, mobilité et raideur → 1.</div>
-              <span class="delta">15 questions → 9</span>
-            </li>
-            <li>
-              <div class="t">Texte libre remplacé par des choix</div>
-              <div class="d">Marque de nourriture et compagnie d'assurance deviennent des listes (avec « Autre » et « Je ne sais pas »).</div>
-            </li>
-            <li>
-              <div class="t">Clinique consultée en autocomplétion</div>
-              <div class="d">Le nom de la clinique n'est plus saisi à la main : autocomplétion Google Maps.</div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="panel">
-          <h3>Questionnaire urgence <span class="tag er">Urgence</span></h3>
-          <ul class="change">
-            <li>
-              <div class="t">Moins de saisie</div>
-              <div class="d">Les questions sur le moment de l'incident deviennent des plages horaires à cocher, au lieu d'un champ à saisir.</div>
-            </li>
-            <li>
-              <div class="t">Branche « autre vétérinaire »</div>
-              <div class="d">Déjà sous forme de liste à cocher : aucun changement requis.</div>
-            </li>
-          </ul>
-          <div class="status" style="margin-top:18px">
-            <span class="ic">i</span>
-            <span class="txt">En contexte d'urgence, la saisie au clavier est réduite au minimum.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- AVANT / APRÈS -->
     <section id="avant-apres">
       <span class="kicker">Avant / Après</span>
-      <h2>Six exemples</h2>
-      <p class="sub">Ce que le client voyait avant, et ce qu'il voit maintenant.</p>
+      <h2>Questionnaires simplifiés</h2>
+
+      <div class="status" style="margin-top:18px;background:var(--warn-tint);border-color:color-mix(in oklch,var(--warn) 30%,#fff)">
+        <span class="ic" style="background:var(--warn)">●</span>
+        <span class="txt"><b style="color:var(--warn)">Travail en cours</b> — ces exemples illustrent les changements en cours d'intégration. Prêts vers la fin de la semaine.</span>
+      </div>
 
       <div class="ba-list" style="margin-top:22px">
 
@@ -395,7 +330,7 @@
           <div class="ba-head">
             <span class="ba-idx">1</span>
             <span class="ba-title">Soins dentaires et d'hygiène</span>
-            <span class="ba-scope">Adulte</span>
+            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -424,7 +359,7 @@
           <div class="ba-head">
             <span class="ba-idx">2</span>
             <span class="ba-title">Marque de nourriture</span>
-            <span class="ba-scope">Adulte</span>
+            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -450,7 +385,7 @@
           <div class="ba-head">
             <span class="ba-idx">3</span>
             <span class="ba-title">Clinique consultée</span>
-            <span class="ba-scope">Adulte</span>
+            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -473,7 +408,7 @@
           <div class="ba-head">
             <span class="ba-idx">4</span>
             <span class="ba-title">Peau et pelage</span>
-            <span class="ba-scope">Adulte</span>
+            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -497,7 +432,7 @@
           <div class="ba-head">
             <span class="ba-idx">5</span>
             <span class="ba-title">Changement de poids</span>
-            <span class="ba-scope">Adulte</span>
+            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -544,6 +479,7 @@
       </div>
     </section>
 
+
     <!-- SUITE À NOTRE RENCONTRE -->
     <section id="suite">
       <span class="kicker">Suite à notre rencontre</span>
@@ -553,48 +489,20 @@
       <h3 style="margin-top:26px;font-size:18px">1 · Envoi d'un questionnaire — moins de saisie à la réception</h3>
       <p class="sub" style="margin-top:6px">Les champs « espèce » et « sexe » sont retirés du formulaire d'envoi. Le nom du client, le numéro et le nom de l'animal sont conservés : le nom de l'animal sert à associer le bon dossier et figure désormais dans le message texte.</p>
 
-      <div class="wf-wrap">
-        <!-- AVANT -->
-        <div>
-          <div class="wf-cap"><span class="mk">×</span> Avant — formulaire d'envoi</div>
-          <div class="wf">
-            <div class="wf-bar"><i></i><i></i><i></i><span class="ttl">Envoyer un questionnaire</span></div>
-            <div class="wf-body">
-              <div class="wf-two">
-                <div class="wf-field"><label>Prénom du client</label><div class="wf-box">Marie</div></div>
-                <div class="wf-field"><label>Nom de famille</label><div class="wf-box">Tremblay</div></div>
-              </div>
-              <div class="wf-field"><label>Nom de l'animal</label><div class="wf-box">Mylo</div></div>
-              <div class="wf-two">
-                <div class="wf-field"><label>Espèce</label><div class="wf-box">chien / chat</div></div>
-                <div class="wf-field"><label>Sexe</label><div class="wf-box">mâle / femelle</div></div>
-              </div>
-              <div class="wf-field"><label>Type de questionnaire</label>
-                <div class="wf-pills"><span class="wf-pill">Adulte</span><span class="wf-pill">Problème de santé</span><span class="wf-pill">Jeune</span></div>
-              </div>
-              <div class="wf-field"><label>Numéro de téléphone</label><div class="wf-box">(514) 000-0000</div></div>
-              <div class="wf-btn">Envoyer le SMS</div>
-            </div>
-          </div>
-          <div class="wf-foot">Plusieurs champs à remplir à chaque envoi.</div>
-        </div>
-
         <!-- APRÈS -->
         <div>
           <div class="wf-cap"><span class="mk">✓</span> Après — moins de champs</div>
           <div class="wf">
             <div class="wf-bar"><i></i><i></i><i></i><span class="ttl">Envoyer un questionnaire</span></div>
             <div class="wf-body">
-              <div class="wf-field rm"><label>Espèce · Sexe</label><div class="wf-box rm">retiré</div></div>
               <div class="wf-note"><span class="ar">✗</span> Deux champs retirés : espèce et sexe.</div>
-              <div class="wf-field" style="margin-top:13px"><label>Nom du client</label><div class="wf-box">Marie Tremblay</div></div>
+              <div class="wf-note"><span class="ar">✗</span> Champ fusionnées: Prénom, Nom => Nom du client.</div>
+              <div class="wf-field" style="margin-top:13px"><label>Numéro de téléphone</label><div class="wf-box">(514) 000-0000</div></div>
+              <div class="wf-field"><label>Nom du client</label><div class="wf-box">Marie Tremblay</div></div>
               <div class="wf-field keep"><label>Nom de l'animal <span class="wf-tag">conservé</span></label><div class="wf-box keep">Mylo</div></div>
               <div class="wf-note"><span class="ar">✓</span> Conservé — sert à associer le bon dossier.</div>
-              <div class="wf-field" style="margin-top:13px"><label>Type de questionnaire</label>
-                <div class="wf-pills"><span class="wf-pill">Adulte</span><span class="wf-pill">Problème de santé</span><span class="wf-pill">Jeune</span><span class="wf-pill new">Suivi</span></div>
+                <div class="wf-pills"><span class="wf-pill"><i class="qdot adult"></i>Adulte</span><span class="wf-pill"><i class="qdot health"></i>Problème de santé</span><span class="wf-pill"><i class="qdot young"></i>Jeune</span><span class="wf-pill new"><i class="qdot suivi"></i>Suivi <span class="wf-tag" style="border-color:var(--warn);color:var(--warn)">en cours</span></span></div>
               </div>
-              <div class="wf-note"><span class="ar">+</span> Nouveau type « Suivi ».</div>
-              <div class="wf-field" style="margin-top:13px"><label>Numéro de téléphone</label><div class="wf-box">(514) 000-0000</div></div>
               <div class="wf-btn">Envoyer le SMS</div>
             </div>
           </div>
@@ -604,12 +512,12 @@
 
       <div class="grid2" style="margin-top:24px">
         <div class="panel">
-          <h3><span class="tag" style="color:#fff;background:var(--fam-suivi)">Nouveau</span> &nbsp;2 · Questionnaire « Suivi »</h3>
+          <h3><span class="tag" style="color:var(--warn);background:var(--warn-tint)">En cours</span> &nbsp;2 · Questionnaire « Suivi »</h3>
           <p style="margin-top:12px;font-size:14.5px;color:var(--text)">Questionnaire court pour les rendez-vous de suivi (réaction à un médicament, suivi d'oreille ou de plaie). Il ne repose pas les questions déjà répondues (statut vaccinal, etc.) et se limite à l'essentiel : évolution depuis la visite, prise de la médication.</p>
         </div>
         <div class="panel">
-          <h3><span class="tag" style="color:#fff;background:var(--fam-suivi)">Nouveau</span> &nbsp;3 · Champ de précision</h3>
-          <p style="margin-top:12px;font-size:14.5px;color:var(--text)">En fin de questionnaire, une question ouverte permet au client d'ajouter une précision ou de corriger une réponse précédente (par exemple, l'accès à l'extérieur). Une seule question, en fin de parcours.</p>
+          <h3><span class="tag" style="color:var(--muted);background:#eef0f4">À l'étude</span> &nbsp;3 · Champ de commentaires libres</h3>
+          <p style="margin-top:12px;font-size:14.5px;color:var(--text)">Piste explorée lors de la rencontre : une question ouverte en fin de questionnaire permettrait aux clients d'ajouter des précisions — par exemple sur les sorties extérieures — ou de corriger une réponse pour clarifier le dossier. Rien n'est encore décidé ni en développement.</p>
         </div>
       </div>
 
@@ -618,6 +526,91 @@
         <span class="txt"><b>Statut</b> — preuve de concept réalisée ; travail sur l'anamnèse (résumé pour le vétérinaire) en cours. Livraison prévue d'ici la fin de la semaine.</span>
       </div>
     </section>
+
+    <!-- EN BREF -->
+    <section id="bref">
+      <span class="kicker">En bref</span>
+      <h2>Le questionnaire adulte était trop long</h2>
+      <div class="callout">
+        <p>Le questionnaire adulte comptait environ <strong>65 questions</strong> (<strong>~10 min</strong>), dont <strong>45</strong> posées à tous. Les abandons survenaient surtout dans la « revue des systèmes ».</p>
+        <p>Les changements ci-dessous raccourcissent le parcours <strong>sans retirer de questions de dépistage</strong> : les questions redondantes sont fusionnées et la saisie est remplacée par des choix.</p>
+      </div>
+
+      <div class="metrics">
+        <div class="metric accent">
+          <div class="num">74<span class="unit"> %</span></div>
+          <div class="lab">complètent le questionnaire une fois commencé <small>(242 → 178)</small></div>
+        </div>
+        <div class="metric">
+          <div class="num">45</div>
+          <div class="lab">questions posées à tous avant toute personnalisation (adulte)</div>
+        </div>
+        <div class="metric">
+          <div class="num">17<span class="unit">ᵉ</span></div>
+          <div class="lab">question où survient le plus souvent l'abandon</div>
+        </div>
+        <div class="metric">
+          <div class="num">15<span class="unit"> → 9</span></div>
+          <div class="lab">questions fusionnées, sans perte d'information</div>
+        </div>
+        <div class="metric accent">
+          <div class="num">−9<span class="unit"> %</span></div>
+          <div class="lab">de longueur en moins (questionnaire adulte)</div>
+        </div>
+        <div class="metric">
+          <div class="num">5</div>
+          <div class="lab">améliorations livrées, plus 3 correctifs de fiabilité</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CE QUI CHANGE -->
+    <section id="change">
+      <span class="kicker">Ce qui sera en production demain soir (16 juin)</span>
+      <h2>Moins de redondance et moins de saisie, sans retirer de dépistage</h2>
+      <p class="sub">Deux questionnaires concernés : le bilan de l'animal adulte et l'urgence.</p>
+
+      <div class="grid2">
+        <div class="panel">
+          <h3>Questionnaire adulte <span class="tag adult"><i class="qdot adult"></i>Bilan annuel</span></h3>
+          <ul class="change">
+            <li>
+              <div class="t">Revue des systèmes conservée</div>
+              <div class="d">Les 13 questions de dépistage restent posées à tous : elles servent à détecter ce que le client ne pense pas toujours à signaler (eau, urine, mobilité, masses cutanées…).</div>
+              <span class="delta">aucune question retirée</span>
+            </li>
+            <li>
+              <div class="t">Questions redondantes fusionnées</div>
+              <div class="d">Sans rien retirer : hygiène dentaire (brossage, autres moyens, griffes) → 1, peau et pelage (grattage, rougeurs, plaies, masses) → 1, poids et début de la perte → 1, mobilité et raideur → 1.</div>
+              <span class="delta">15 questions → 9</span>
+            </li>
+            <li>
+              <div class="t">Texte libre remplacé par des choix</div>
+              <div class="d">Marque de nourriture et compagnie d'assurance deviennent des listes (avec « Autre » et « Je ne sais pas »).</div>
+            </li>
+            <li>
+              <div class="t">Clinique consultée en autocomplétion</div>
+              <div class="d">Le nom de la clinique n'est plus saisi à la main : autocomplétion Google Maps.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Questionnaire urgence <span class="tag er">Urgence</span></h3>
+          <ul class="change">
+            <li>
+              <div class="t">Moins de saisie</div>
+              <div class="d">Les questions sur le moment de l'incident deviennent des plages horaires à cocher, au lieu d'un champ à saisir.</div>
+            </li>
+            <li>
+              <div class="t">Branche « autre vétérinaire »</div>
+              <div class="d">Déjà sous forme de liste à cocher : aucun changement requis.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
 
     <!-- CORRECTIONS DE FIABILITÉ -->
     <section id="fiabilite">
@@ -701,11 +694,15 @@
       <h2>Points soulevés, à planifier</h2>
       <p class="sub">Évoqués lors de la rencontre, à planifier après les livraisons de cette semaine.</p>
       <div class="impl">
+        <div class="it" style="grid-column:1/-1;background:linear-gradient(180deg,var(--primary-tint),#fff);border-color:var(--primary-tint-2)">
+          <span class="ic" style="background:var(--primary);color:#fff">★</span>
+          <p><span style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--primary-strong);background:#fff;border:1px solid var(--primary-tint-2);padding:2px 8px;border-radius:999px;margin-right:8px">Le plus important</span><strong>Amélioration de l'anamnèse</strong> — rendre le résumé transmis au vétérinaire plus clair et plus complet : meilleure structure, hiérarchisation des éléments cliniques et lecture plus rapide.</p>
+        </div>
+        <div class="it"><span class="ic">•</span><p><strong>Anamnèse — mode de vie en puces</strong> — sections « mode de vie » en puces plutôt qu'en paragraphes.</p></div>
+        <div class="it"><span class="ic">•</span><p><strong>Anamnèse partielle</strong> — résumé généré même si le questionnaire n'est pas terminé.</p></div>
         <div class="it"><span class="ic">•</span><p><strong>Pièces jointes</strong> — photo ou document en fin de questionnaire, pour le triage et les suivis.</p></div>
         <div class="it"><span class="ic">•</span><p><strong>Micropuce</strong> — ajout aux points de soin, pour éviter les oublis sur les certificats.</p></div>
         <div class="it"><span class="ic">•</span><p><strong>Animaux exotiques</strong> — enrichir l'arbre de questions à partir des formulaires de la clinique de l'Est.</p></div>
-        <div class="it"><span class="ic">•</span><p><strong>Anamnèse partielle</strong> — résumé généré même si le questionnaire n'est pas terminé.</p></div>
-        <div class="it"><span class="ic">•</span><p><strong>Anamnèse</strong> — sections « mode de vie » en puces plutôt qu'en paragraphes.</p></div>
       </div>
     </section>
 
@@ -714,7 +711,12 @@
   <footer class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="brand" style="font-size:15px"><span class="dot" style="width:22px;height:22px;font-size:13px">◆</span> Ovet</div>
+        <div class="brand" style="font-size:15px;gap:9px">
+          <svg class="mark" width="22" height="22" viewBox="0 0 512 512" role="img" aria-label="Ovet" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M208 356.705C182.115 376.011 157.185 388 138.693 388C108.534 388 81.1794 376.1 60.9435 356.413L60.8159 356.285C42.0755 337.458 26.8547 314.98 16.2678 290.048L16.2437 289.991C5.79727 265.009 0 237.632 0 208.771C0 93.3827 93.0932 0 207.949 0C322.682 0 415.886 93.3705 416 208.76V208.771C416 237.652 410.195 265.047 399.631 290.048C389.162 314.961 373.919 337.476 354.931 356.437L354.825 356.54C334.719 376.1 307.365 388 277.206 388C258.814 388 233.889 376.013 208 356.705ZM172.686 326.752C142.391 298.546 113.086 265.856 94.0503 243.502C84.8129 232.726 79.497 220.28 77.7007 207.707C69.4998 151.166 139.328 116.984 180.793 156.516L207.947 184.632L234.805 156.818L235.146 156.494C278.637 115.067 351.06 155.59 336.876 214.202L336.868 214.235C334.353 224.496 329.491 234.471 321.906 243.436L321.869 243.48C302.801 265.786 273.565 298.525 243.302 326.746C247.847 329.926 252.298 332.776 256.615 335.218C264.35 339.593 271.21 342.895 277.206 342.895C295.063 342.895 311.27 335.885 323.233 324.295C337.939 309.571 349.816 292.009 357.986 272.557L357.997 272.534C366.285 252.925 370.819 231.434 370.82 208.782C370.726 118.389 297.838 45.1048 207.949 45.1048C117.977 45.1048 45.1795 118.382 45.1795 208.771C45.1795 231.434 49.7156 252.936 57.9117 272.557C66.1832 292.014 78.0802 309.605 92.8341 324.458C104.75 335.938 120.903 342.895 138.693 342.895C144.733 342.895 151.624 339.596 159.382 335.213C163.698 332.775 168.146 329.928 172.686 326.752ZM207.995 297.921C238.43 270.185 268.312 236.647 287.499 214.203C290.244 210.933 292.05 207.301 292.975 203.548C296.585 188.524 277.937 178.583 266.608 188.872L207.951 249.617C207.951 249.617 148.985 188.565 148.945 188.529C138.317 178.878 120.318 186.838 122.42 201.287L122.425 201.322C123.069 205.849 125.051 210.297 128.401 214.204L128.424 214.232C147.562 236.705 177.526 270.19 207.995 297.921Z" fill="#1F81EB"/>
+        </svg>
+          Ovet
+        </div>
         <p style="margin-top:8px">Mise à jour du 15 juin 2026, à la suite de notre rencontre.</p>
       </div>
       <span class="ref">Réf. technique · PR #309 — moteur de questionnaires</span>
