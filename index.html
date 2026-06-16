@@ -317,12 +317,12 @@
           <div class="lab">question où survient le plus souvent l'abandon</div>
         </div>
         <div class="metric">
-          <div class="num">3<span class="unit"> → 1</span></div>
-          <div class="lab">questions d'hygiène fusionnées en une seule</div>
+          <div class="num">15<span class="unit"> → 9</span></div>
+          <div class="lab">questions fusionnées, sans perte d'information</div>
         </div>
         <div class="metric accent">
-          <div class="num">13</div>
-          <div class="lab">questions de dépistage conservées — aucune retirée</div>
+          <div class="num">0</div>
+          <div class="lab">question de dépistage retirée — revue des systèmes conservée</div>
         </div>
         <div class="metric">
           <div class="num">5</div>
@@ -347,9 +347,9 @@
               <span class="delta">aucune question retirée</span>
             </li>
             <li>
-              <div class="t">Fusion hygiène / dentaire</div>
-              <div class="d">Brossage des dents, autres moyens d'hygiène et coupe des griffes sont réunis en une question.</div>
-              <span class="delta">3 questions → 1</span>
+              <div class="t">Questions redondantes fusionnées</div>
+              <div class="d">Sans rien retirer : hygiène dentaire (brossage, autres moyens, griffes) → 1, peau et pelage (grattage, rougeurs, plaies, masses) → 1, poids et début de la perte → 1, mobilité et raideur → 1.</div>
+              <span class="delta">15 questions → 9</span>
             </li>
             <li>
               <div class="t">Texte libre remplacé par des choix</div>
@@ -385,7 +385,7 @@
     <!-- AVANT / APRÈS -->
     <section id="avant-apres">
       <span class="kicker">Avant / Après</span>
-      <h2>Quatre exemples</h2>
+      <h2>Six exemples</h2>
       <p class="sub">Ce que le client voyait avant, et ce qu'il voit maintenant.</p>
 
       <div class="ba-list" style="margin-top:22px">
@@ -472,6 +472,53 @@
         <article class="ba">
           <div class="ba-head">
             <span class="ba-idx">4</span>
+            <span class="ba-title">Peau et pelage</span>
+            <span class="ba-scope">Adulte</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-col before">
+              <span class="ba-label before"><span class="ic">×</span> Avant</span>
+              <p><span class="lead-num">Trois questions distinctes</span> : « se gratte-t-il? », « dans quelles zones? » et « changements cutanés? ».</p>
+            </div>
+            <div class="ba-col after">
+              <span class="ba-label after"><span class="ic">✓</span> Après</span>
+              <p><span class="lead-num">Une question</span> à cocher : « Peau et pelage — ce que vous avez remarqué »</p>
+              <div class="chips">
+                <span class="chip">Se gratte / se mordille</span><span class="chip">Rougeur</span><span class="chip">Plaies / croûtes</span>
+                <span class="chip">Perte de poils</span><span class="chip">Bosse ou masse</span><span class="chip on">Rien d'anormal</span>
+              </div>
+              <p style="margin-top:11px">Les zones (pattes, visage, partout) n'apparaissent que si « se gratte » est coché. « Bosse ou masse » reste visible pour tous.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="ba">
+          <div class="ba-head">
+            <span class="ba-idx">5</span>
+            <span class="ba-title">Changement de poids</span>
+            <span class="ba-scope">Adulte</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-col before">
+              <span class="ba-label before"><span class="ic">×</span> Avant</span>
+              <p><span class="lead-num">Deux questions</span> : « changement de poids? », puis « quand la perte a-t-elle commencé? ».</p>
+            </div>
+            <div class="ba-col after">
+              <span class="ba-label after"><span class="ic">✓</span> Après</span>
+              <p><span class="lead-num">Une seule question</span> — le moment est intégré aux réponses :</p>
+              <div class="chips">
+                <span class="chip">Non, stable</span><span class="chip">Perte récente</span><span class="chip">Perte progressive</span>
+                <span class="chip">Gain</span><span class="chip on">Je ne sais pas</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="ba">
+          <div class="ba-head">
+            <span class="ba-idx">6</span>
             <span class="ba-title">Moment de l'incident</span>
             <span class="ba-scope">Urgence</span>
           </div>
