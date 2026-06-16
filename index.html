@@ -113,6 +113,10 @@
   .metric .num .unit{font-size:17px;font-weight:700;color:var(--primary-strong)}
   .metric .lab{margin-top:7px;font-size:13.5px;color:var(--muted);line-height:1.4}
   .metric.accent{background:linear-gradient(180deg,var(--primary-tint),#fff);border-color:var(--primary-tint-2)}
+  .m-tag{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+    padding:2px 8px;border-radius:999px;margin-bottom:10px}
+  .m-tag.now{color:var(--muted);background:#eef0f4;border:1px solid var(--border)}
+  .m-tag.soon{color:var(--warn);background:var(--warn-tint);border:1px solid color-mix(in oklch,var(--warn) 25%,#fff)}
 
   /* ---------- Change lists ---------- */
   .grid2{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -123,12 +127,18 @@
   .tag.adult{color:var(--heading);background:var(--fam-annual-tint);border:1px solid color-mix(in oklch,var(--fam-annual) 35%,#fff)}
   .tag.er{color:var(--warn);background:var(--warn-tint)}
   .change{list-style:none;margin:14px 0 0;padding:0}
-  .change li{position:relative;padding:11px 0 11px 30px;border-top:1px dashed var(--border)}
-  .change li:first-child{border-top:0}
-  .change li::before{content:"";position:absolute;left:2px;top:16px;width:16px;height:16px;border-radius:50%;
+  .change > li{position:relative;padding:11px 0 11px 30px;border-top:1px dashed var(--border)}
+  .change > li:first-child{border-top:0}
+  .change > li::before{content:"";position:absolute;left:2px;top:16px;width:16px;height:16px;border-radius:50%;
     background:var(--primary-tint);border:2px solid var(--primary)}
-  .change li .t{font-weight:650;color:var(--heading)}
-  .change li .d{font-size:14.5px;color:var(--muted);margin-top:2px}
+  .change > li .t{font-weight:650;color:var(--heading)}
+  .change > li .d{font-size:14.5px;color:var(--muted);margin-top:2px}
+  .change .fuse{margin:8px 0 0;padding-left:18px;display:grid;gap:3px}
+  .change .fuse li{font-size:14px;color:var(--muted);list-style:disc}
+  .change .fuse li strong{color:var(--text);font-weight:600}
+  .bullets{margin:8px 0 0;padding-left:18px;display:grid;gap:3px}
+  .bullets li{font-size:14.5px;color:var(--muted);list-style:disc}
+  .bullets li strong{color:var(--text);font-weight:600}
   .delta{display:inline-block;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--ok);
     background:var(--ok-tint);padding:2px 9px;border-radius:999px}
 
@@ -160,39 +170,6 @@
     background:#fff;color:var(--text)}
   .chip.on{background:var(--ok-tint);border-color:#bfe6cf;color:#0f7a4f}
   .chip.txt{background:#f4f5f8;border-style:dashed;color:var(--muted)}
-
-  /* ---------- Product dialog mockup (SMS) ---------- */
-  .mock-wrap{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-  .mock{background:var(--card);border:1px solid var(--border-strong);border-radius:var(--radius-lg);
-    box-shadow:var(--shadow);overflow:hidden}
-  .mock .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--border);background:#fafbfd}
-  .mock .bar .lights{display:flex;gap:5px}
-  .mock .bar .lights i{width:9px;height:9px;border-radius:50%;background:#dfe3ea;display:block}
-  .mock .bar .name{font-size:12.5px;font-weight:600;color:var(--muted)}
-  .mock .body{padding:16px}
-  .field{margin-bottom:11px}
-  .field > label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}
-  .input{height:36px;border:1px solid var(--border-strong);border-radius:8px;background:#fff;display:flex;
-    align-items:center;padding:0 11px;font-size:13.5px;color:var(--text)}
-  .input.ph{color:var(--muted-2)}
-  .input.removed{color:var(--muted-2);background:#fbfbfc;border-style:dashed;text-decoration:line-through;
-    text-decoration-color:var(--fam-annual);text-decoration-thickness:2px}
-  .field.removed > label{color:var(--muted-2);text-decoration:line-through;text-decoration-color:var(--fam-annual)}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-  .seg{display:flex;gap:6px;flex-wrap:wrap}
-  .seg .opt{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--border-strong);
-    background:#fff;color:var(--text)}
-  .opt[class*="fam-"]{color:var(--heading);gap:7px}
-  .opt.fam-annual{background:var(--fam-annual-tint);border-color:color-mix(in oklch,var(--fam-annual) 35%,#fff)}
-  .opt.fam-health{background:var(--fam-health-tint);border-color:color-mix(in oklch,var(--fam-health) 35%,#fff)}
-  .opt.fam-preventive{background:var(--fam-preventive-tint);border-color:color-mix(in oklch,var(--fam-preventive) 45%,#fff)}
-  .opt.fam-suivi{background:var(--fam-suivi-tint);border-color:var(--primary-tint-2)}
-  .note-in{margin-top:6px;font-size:12px;color:var(--fam-health);font-weight:600;display:flex;gap:6px;align-items:flex-start}
-  .btn{margin-top:6px;height:38px;border-radius:8px;background:var(--primary);color:#fff;font-weight:650;font-size:13.5px;
-    display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow-sm)}
-  .mock-cap{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;display:flex;align-items:center;gap:7px}
-  .mock-cap.before{color:var(--muted-2)}
-  .mock-cap.after{color:var(--ok)}
 
   /* ---------- Wireframe (schéma fonctionnel, noir & blanc) ---------- */
   .wf-wrap{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
@@ -280,7 +257,7 @@
   @media (max-width:760px){
     h1{font-size:30px}
     .metrics{grid-template-columns:1fr 1fr}
-    .grid2,.mock-wrap,.wf-wrap,.impl{grid-template-columns:1fr}
+    .grid2,.wf-wrap,.impl{grid-template-columns:1fr}
     .ba-body{grid-template-columns:1fr}
     .ba-col.after{border-left:0;border-top:1px solid var(--border)}
   }
@@ -291,12 +268,18 @@
 </head>
 <body>
 
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="ovet-logo" viewBox="0 0 512 512">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M208 356.705C182.115 376.011 157.185 388 138.693 388C108.534 388 81.1794 376.1 60.9435 356.413L60.8159 356.285C42.0755 337.458 26.8547 314.98 16.2678 290.048L16.2437 289.991C5.79727 265.009 0 237.632 0 208.771C0 93.3827 93.0932 0 207.949 0C322.682 0 415.886 93.3705 416 208.76V208.771C416 237.652 410.195 265.047 399.631 290.048C389.162 314.961 373.919 337.476 354.931 356.437L354.825 356.54C334.719 376.1 307.365 388 277.206 388C258.814 388 233.889 376.013 208 356.705ZM172.686 326.752C142.391 298.546 113.086 265.856 94.0503 243.502C84.8129 232.726 79.497 220.28 77.7007 207.707C69.4998 151.166 139.328 116.984 180.793 156.516L207.947 184.632L234.805 156.818L235.146 156.494C278.637 115.067 351.06 155.59 336.876 214.202L336.868 214.235C334.353 224.496 329.491 234.471 321.906 243.436L321.869 243.48C302.801 265.786 273.565 298.525 243.302 326.746C247.847 329.926 252.298 332.776 256.615 335.218C264.35 339.593 271.21 342.895 277.206 342.895C295.063 342.895 311.27 335.885 323.233 324.295C337.939 309.571 349.816 292.009 357.986 272.557L357.997 272.534C366.285 252.925 370.819 231.434 370.82 208.782C370.726 118.389 297.838 45.1048 207.949 45.1048C117.977 45.1048 45.1795 118.382 45.1795 208.771C45.1795 231.434 49.7156 252.936 57.9117 272.557C66.1832 292.014 78.0802 309.605 92.8341 324.458C104.75 335.938 120.903 342.895 138.693 342.895C144.733 342.895 151.624 339.596 159.382 335.213C163.698 332.775 168.146 329.928 172.686 326.752ZM207.995 297.921C238.43 270.185 268.312 236.647 287.499 214.203C290.244 210.933 292.05 207.301 292.975 203.548C296.585 188.524 277.937 178.583 266.608 188.872L207.951 249.617C207.951 249.617 148.985 188.565 148.945 188.529C138.317 178.878 120.318 186.838 122.42 201.287L122.425 201.322C123.069 205.849 125.051 210.297 128.401 214.204L128.424 214.232C147.562 236.705 177.526 270.19 207.995 297.921Z" fill="#1F81EB"/>
+    </symbol>
+  </svg>
+
   <!-- HERO -->
   <header class="hero">
     <div class="hero-inner">
       <div class="brand">
         <svg class="mark" width="32" height="32" viewBox="0 0 512 512" role="img" aria-label="Ovet" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M208 356.705C182.115 376.011 157.185 388 138.693 388C108.534 388 81.1794 376.1 60.9435 356.413L60.8159 356.285C42.0755 337.458 26.8547 314.98 16.2678 290.048L16.2437 289.991C5.79727 265.009 0 237.632 0 208.771C0 93.3827 93.0932 0 207.949 0C322.682 0 415.886 93.3705 416 208.76V208.771C416 237.652 410.195 265.047 399.631 290.048C389.162 314.961 373.919 337.476 354.931 356.437L354.825 356.54C334.719 376.1 307.365 388 277.206 388C258.814 388 233.889 376.013 208 356.705ZM172.686 326.752C142.391 298.546 113.086 265.856 94.0503 243.502C84.8129 232.726 79.497 220.28 77.7007 207.707C69.4998 151.166 139.328 116.984 180.793 156.516L207.947 184.632L234.805 156.818L235.146 156.494C278.637 115.067 351.06 155.59 336.876 214.202L336.868 214.235C334.353 224.496 329.491 234.471 321.906 243.436L321.869 243.48C302.801 265.786 273.565 298.525 243.302 326.746C247.847 329.926 252.298 332.776 256.615 335.218C264.35 339.593 271.21 342.895 277.206 342.895C295.063 342.895 311.27 335.885 323.233 324.295C337.939 309.571 349.816 292.009 357.986 272.557L357.997 272.534C366.285 252.925 370.819 231.434 370.82 208.782C370.726 118.389 297.838 45.1048 207.949 45.1048C117.977 45.1048 45.1795 118.382 45.1795 208.771C45.1795 231.434 49.7156 252.936 57.9117 272.557C66.1832 292.014 78.0802 309.605 92.8341 324.458C104.75 335.938 120.903 342.895 138.693 342.895C144.733 342.895 151.624 339.596 159.382 335.213C163.698 332.775 168.146 329.928 172.686 326.752ZM207.995 297.921C238.43 270.185 268.312 236.647 287.499 214.203C290.244 210.933 292.05 207.301 292.975 203.548C296.585 188.524 277.937 178.583 266.608 188.872L207.951 249.617C207.951 249.617 148.985 188.565 148.945 188.529C138.317 178.878 120.318 186.838 122.42 201.287L122.425 201.322C123.069 205.849 125.051 210.297 128.401 214.204L128.424 214.232C147.562 236.705 177.526 270.19 207.995 297.921Z" fill="#1F81EB"/>
+          <use href="#ovet-logo"/>
         </svg>
         Ovet
       </div>
@@ -312,6 +295,70 @@
   </header>
 
   <main class="wrap">
+
+    <!-- CORRECTIONS DE FIABILITÉ -->
+    <section id="fiabilite">
+      <span class="kicker">Corrections de fiabilité</span>
+      <h2>Trois correctifs, déjà en ligne</h2>
+      <p class="sub">Trois problèmes qui empêchaient parfois un client de compléter son questionnaire.</p>
+
+      <div class="fixes" style="margin-top:22px">
+
+        <div class="fix">
+          <div class="fix-head">
+            <span class="ic">1</span>
+            <h3>Réutilisation du lien</h3>
+            <span class="done">En ligne depuis le 10 juin</span>
+          </div>
+          <p>Le lien n'est plus à usage unique. Le client peut le rouvrir avec le même SMS, interrompre sa saisie et y revenir, jusqu'à <strong>10 ouvertures</strong>.</p>
+        </div>
+
+        <div class="fix">
+          <div class="fix-head">
+            <span class="ic">2</span>
+            <h3>Expiration des liens</h3>
+            <span class="done">Réglé</span>
+          </div>
+          <p>Le compte à rebours démarre à l'envoi du SMS, et non à la création du lien.</p>
+          <div class="tl">
+            <div class="tl-row bad">
+              <div class="h">Avant — le lien pouvait être expiré à l'envoi</div>
+              <div class="steps">
+                <span class="step">Lien créé<span class="sub">lundi 9 h</span></span>
+                <span class="sep">→</span>
+                <span class="step dead">Expiré<span class="sub">mercredi 9 h</span></span>
+                <span class="sep">→</span>
+                <span class="step">SMS envoyé<span class="sub">jeudi 17 h</span></span>
+                <span class="sep">→</span>
+                <span class="step dead">Erreur<span class="sub">vendredi</span></span>
+              </div>
+            </div>
+            <div class="tl-row good">
+              <div class="h">Après — 48 h à partir du SMS</div>
+              <div class="steps">
+                <span class="step">Lien créé<span class="sub">lundi 9 h · rien ne démarre</span></span>
+                <span class="sep">→</span>
+                <span class="step">SMS envoyé<span class="sub">jeudi 17 h · départ des 48 h</span></span>
+                <span class="sep">→</span>
+                <span class="step live">Valide<span class="sub">jusqu'à samedi 17 h</span></span>
+              </div>
+            </div>
+          </div>
+          <p class="muted" style="margin-top:10px">≈&nbsp;300 liens déjà envoyés ont été corrigés rétroactivement.</p>
+        </div>
+
+        <div class="fix">
+          <div class="fix-head">
+            <span class="ic">3</span>
+            <h3>Formulaires bloqués</h3>
+            <span class="done">Cause identifiée et corrigée</span>
+          </div>
+          <p>Dans certains cas, une étape échouait en arrière-plan sans message : le formulaire restait figé sur l'indicateur de chargement. La cause a été identifiée et corrigée.</p>
+        </div>
+
+      </div>
+    </section>
+
 
     <!-- AVANT / APRÈS -->
     <section id="avant-apres">
@@ -330,7 +377,7 @@
           <div class="ba-head">
             <span class="ba-idx">1</span>
             <span class="ba-title">Soins dentaires et d'hygiène</span>
-            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
+            <span class="ba-scope"><i class="qdot adult" aria-hidden="true"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -359,7 +406,7 @@
           <div class="ba-head">
             <span class="ba-idx">2</span>
             <span class="ba-title">Marque de nourriture</span>
-            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
+            <span class="ba-scope"><i class="qdot adult" aria-hidden="true"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -385,7 +432,7 @@
           <div class="ba-head">
             <span class="ba-idx">3</span>
             <span class="ba-title">Clinique consultée</span>
-            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
+            <span class="ba-scope"><i class="qdot adult" aria-hidden="true"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -395,7 +442,7 @@
             </div>
             <div class="ba-col after">
               <span class="ba-label after"><span class="ic">✓</span> Après</span>
-              <p><span class="lead-num">Autocomplétion Google Maps</span> : saisie des premières lettres, puis sélection dans la liste.</p>
+              <p><span class="lead-num"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style="display:inline-block;vertical-align:-2px;margin-right:3px"><path d="M12 23s7-7.6 7-13a7 7 0 1 0-14 0c0 5.4 7 13 7 13z" fill="#EA4335"/><circle cx="12" cy="10" r="3" fill="#fff"/></svg>Autocomplétion Google Maps</span> : saisie des premières lettres, puis sélection dans la liste.</p>
               <div class="chips">
                 <span class="chip">Clini…</span><span class="chip on">Clinique vétérinaire …</span>
               </div>
@@ -408,7 +455,7 @@
           <div class="ba-head">
             <span class="ba-idx">4</span>
             <span class="ba-title">Peau et pelage</span>
-            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
+            <span class="ba-scope"><i class="qdot adult" aria-hidden="true"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -432,7 +479,7 @@
           <div class="ba-head">
             <span class="ba-idx">5</span>
             <span class="ba-title">Changement de poids</span>
-            <span class="ba-scope"><i class="qdot adult"></i>Adulte</span>
+            <span class="ba-scope"><i class="qdot adult" aria-hidden="true"></i>Adulte</span>
           </div>
           <div class="ba-body">
             <div class="ba-col before">
@@ -500,8 +547,7 @@
               <div class="wf-field" style="margin-top:13px"><label>Numéro de téléphone</label><div class="wf-box">(514) 000-0000</div></div>
               <div class="wf-field"><label>Nom du client</label><div class="wf-box">Marie Tremblay</div></div>
               <div class="wf-field keep"><label>Nom de l'animal <span class="wf-tag">conservé</span></label><div class="wf-box keep">Mylo</div></div>
-              <div class="wf-note"><span class="ar">✓</span> Conservé — sert à associer le bon dossier.</div>
-                <div class="wf-pills"><span class="wf-pill"><i class="qdot adult"></i>Adulte</span><span class="wf-pill"><i class="qdot health"></i>Problème de santé</span><span class="wf-pill"><i class="qdot young"></i>Jeune</span><span class="wf-pill new"><i class="qdot suivi"></i>Suivi <span class="wf-tag" style="border-color:var(--warn);color:var(--warn)">en cours</span></span></div>
+                <div class="wf-pills"><span class="wf-pill"><i class="qdot adult" aria-hidden="true"></i>Adulte</span><span class="wf-pill"><i class="qdot health" aria-hidden="true"></i>Problème de santé</span><span class="wf-pill"><i class="qdot young" aria-hidden="true"></i>Jeune</span><span class="wf-pill new"><i class="qdot suivi" aria-hidden="true"></i>Suivi <span class="wf-tag" style="border-color:var(--warn);color:var(--warn)">en cours</span></span></div>
               </div>
               <div class="wf-btn">Envoyer le SMS</div>
             </div>
@@ -536,30 +582,41 @@
         <p>Les changements ci-dessous raccourcissent le parcours <strong>sans retirer de questions de dépistage</strong> : les questions redondantes sont fusionnées et la saisie est remplacée par des choix.</p>
       </div>
 
+      <p class="sub" style="margin-top:18px">Constat mesuré aujourd'hui en production.</p>
       <div class="metrics">
         <div class="metric accent">
+          <span class="m-tag now">Constat</span>
           <div class="num">74<span class="unit"> %</span></div>
-          <div class="lab">complètent le questionnaire une fois commencé <small>(242 → 178)</small></div>
+          <div class="lab">complètent le questionnaire une fois réellement commencé, en excluant les clics-sortie immédiats <small>(242 → 178)</small></div>
         </div>
         <div class="metric">
+          <span class="m-tag now">Constat</span>
           <div class="num">45</div>
           <div class="lab">questions posées à tous avant toute personnalisation (adulte)</div>
         </div>
         <div class="metric">
+          <span class="m-tag now">Constat</span>
           <div class="num">17<span class="unit">ᵉ</span></div>
           <div class="lab">question où survient le plus souvent l'abandon</div>
         </div>
+      </div>
+
+      <p class="sub" style="margin-top:22px">Effet attendu des changements de cette semaine (pas encore en production).</p>
+      <div class="metrics">
         <div class="metric">
+          <span class="m-tag soon">À venir</span>
           <div class="num">15<span class="unit"> → 9</span></div>
           <div class="lab">questions fusionnées, sans perte d'information</div>
         </div>
         <div class="metric accent">
+          <span class="m-tag soon">À venir</span>
           <div class="num">−9<span class="unit"> %</span></div>
-          <div class="lab">de longueur en moins (questionnaire adulte)</div>
+          <div class="lab">de longueur en moins après amélioration (questionnaire adulte)</div>
         </div>
         <div class="metric">
+          <span class="m-tag soon">À venir</span>
           <div class="num">5</div>
-          <div class="lab">améliorations livrées, plus 3 correctifs de fiabilité</div>
+          <div class="lab">améliorations envisagées cette semaine <small>(3 correctifs de fiabilité déjà livrés)</small></div>
         </div>
       </div>
     </section>
@@ -572,7 +629,7 @@
 
       <div class="grid2">
         <div class="panel">
-          <h3>Questionnaire adulte <span class="tag adult"><i class="qdot adult"></i>Bilan annuel</span></h3>
+          <h3>Questionnaire adulte <span class="tag adult"><i class="qdot adult" aria-hidden="true"></i>Bilan annuel</span></h3>
           <ul class="change">
             <li>
               <div class="t">Revue des systèmes conservée</div>
@@ -581,7 +638,13 @@
             </li>
             <li>
               <div class="t">Questions redondantes fusionnées</div>
-              <div class="d">Sans rien retirer : hygiène dentaire (brossage, autres moyens, griffes) → 1, peau et pelage (grattage, rougeurs, plaies, masses) → 1, poids et début de la perte → 1, mobilité et raideur → 1.</div>
+              <div class="d">Sans rien retirer :</div>
+              <ul class="fuse">
+                <li><strong>Hygiène dentaire</strong> (brossage, autres moyens, griffes) → 1</li>
+                <li><strong>Peau et pelage</strong> (grattage, rougeurs, plaies, masses) → 1</li>
+                <li><strong>Poids</strong> et début de la perte → 1</li>
+                <li><strong>Mobilité</strong> et raideur → 1</li>
+              </ul>
               <span class="delta">15 questions → 9</span>
             </li>
             <li>
@@ -590,7 +653,7 @@
             </li>
             <li>
               <div class="t">Clinique consultée en autocomplétion</div>
-              <div class="d">Le nom de la clinique n'est plus saisi à la main : autocomplétion Google Maps.</div>
+              <div class="d">Le nom de la clinique n'est plus saisi à la main : autocomplétion <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true" style="display:inline-block;vertical-align:-2px;margin-right:1px"><path d="M12 23s7-7.6 7-13a7 7 0 1 0-14 0c0 5.4 7 13 7 13z" fill="#EA4335"/><circle cx="12" cy="10" r="3" fill="#fff"/></svg>Google Maps.</div>
             </li>
           </ul>
         </div>
@@ -612,68 +675,6 @@
     </section>
 
 
-    <!-- CORRECTIONS DE FIABILITÉ -->
-    <section id="fiabilite">
-      <span class="kicker">Corrections de fiabilité</span>
-      <h2>Trois correctifs, déjà en ligne</h2>
-      <p class="sub">Trois problèmes qui empêchaient parfois un client de compléter son questionnaire.</p>
-
-      <div class="fixes" style="margin-top:22px">
-
-        <div class="fix">
-          <div class="fix-head">
-            <span class="ic">1</span>
-            <h3>Réutilisation du lien</h3>
-            <span class="done">En ligne depuis le 10 juin</span>
-          </div>
-          <p>Le lien n'est plus à usage unique. Le client peut le rouvrir avec le même SMS, interrompre sa saisie et y revenir, jusqu'à <strong>10 ouvertures</strong>.</p>
-        </div>
-
-        <div class="fix">
-          <div class="fix-head">
-            <span class="ic">2</span>
-            <h3>Expiration des liens</h3>
-            <span class="done">Réglé</span>
-          </div>
-          <p>Le compte à rebours démarre à l'envoi du SMS, et non à la création du lien.</p>
-          <div class="tl">
-            <div class="tl-row bad">
-              <div class="h">Avant — le lien pouvait être expiré à l'envoi</div>
-              <div class="steps">
-                <span class="step">Lien créé<span class="sub">lundi 9 h</span></span>
-                <span class="sep">→</span>
-                <span class="step dead">Expiré<span class="sub">mercredi 9 h</span></span>
-                <span class="sep">→</span>
-                <span class="step">SMS envoyé<span class="sub">jeudi 17 h</span></span>
-                <span class="sep">→</span>
-                <span class="step dead">Erreur<span class="sub">vendredi</span></span>
-              </div>
-            </div>
-            <div class="tl-row good">
-              <div class="h">Après — 48 h à partir du SMS</div>
-              <div class="steps">
-                <span class="step">Lien créé<span class="sub">lundi 9 h · rien ne démarre</span></span>
-                <span class="sep">→</span>
-                <span class="step">SMS envoyé<span class="sub">jeudi 17 h · départ des 48 h</span></span>
-                <span class="sep">→</span>
-                <span class="step live">Valide<span class="sub">jusqu'à samedi 17 h</span></span>
-              </div>
-            </div>
-          </div>
-          <p class="muted" style="margin-top:10px">≈&nbsp;300 liens déjà envoyés ont été corrigés rétroactivement.</p>
-        </div>
-
-        <div class="fix">
-          <div class="fix-head">
-            <span class="ic">3</span>
-            <h3>Formulaires bloqués</h3>
-            <span class="done">Cause identifiée et corrigée</span>
-          </div>
-          <p>Dans certains cas, une étape échouait en arrière-plan sans message : le formulaire restait figé sur l'indicateur de chargement. La cause a été identifiée et corrigée.</p>
-        </div>
-
-      </div>
-    </section>
 
     <!-- IMPLICATIONS -->
     <section id="implications">
@@ -696,7 +697,14 @@
       <div class="impl">
         <div class="it" style="grid-column:1/-1;background:linear-gradient(180deg,var(--primary-tint),#fff);border-color:var(--primary-tint-2)">
           <span class="ic" style="background:var(--primary);color:#fff">★</span>
-          <p><span style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--primary-strong);background:#fff;border:1px solid var(--primary-tint-2);padding:2px 8px;border-radius:999px;margin-right:8px">Le plus important</span><strong>Amélioration de l'anamnèse</strong> — rendre le résumé transmis au vétérinaire plus clair et plus complet : meilleure structure, hiérarchisation des éléments cliniques et lecture plus rapide.</p>
+          <div>
+            <p><span style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--primary-strong);background:#fff;border:1px solid var(--primary-tint-2);padding:2px 8px;border-radius:999px;margin-right:8px">Le plus important</span><strong>Amélioration de l'anamnèse</strong> — un résumé plus clair et plus constant pour le vétérinaire.</p>
+            <ul class="bullets">
+              <li><strong>Structure claire</strong> — éléments cliniques hiérarchisés</li>
+              <li>Lecture plus rapide</li>
+              <li><strong>Moins de variabilité</strong> — un résumé plus constant d'une fois à l'autre</li>
+            </ul>
+          </div>
         </div>
         <div class="it"><span class="ic">•</span><p><strong>Anamnèse — mode de vie en puces</strong> — sections « mode de vie » en puces plutôt qu'en paragraphes.</p></div>
         <div class="it"><span class="ic">•</span><p><strong>Anamnèse partielle</strong> — résumé généré même si le questionnaire n'est pas terminé.</p></div>
@@ -713,8 +721,8 @@
       <div>
         <div class="brand" style="font-size:15px;gap:9px">
           <svg class="mark" width="22" height="22" viewBox="0 0 512 512" role="img" aria-label="Ovet" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M208 356.705C182.115 376.011 157.185 388 138.693 388C108.534 388 81.1794 376.1 60.9435 356.413L60.8159 356.285C42.0755 337.458 26.8547 314.98 16.2678 290.048L16.2437 289.991C5.79727 265.009 0 237.632 0 208.771C0 93.3827 93.0932 0 207.949 0C322.682 0 415.886 93.3705 416 208.76V208.771C416 237.652 410.195 265.047 399.631 290.048C389.162 314.961 373.919 337.476 354.931 356.437L354.825 356.54C334.719 376.1 307.365 388 277.206 388C258.814 388 233.889 376.013 208 356.705ZM172.686 326.752C142.391 298.546 113.086 265.856 94.0503 243.502C84.8129 232.726 79.497 220.28 77.7007 207.707C69.4998 151.166 139.328 116.984 180.793 156.516L207.947 184.632L234.805 156.818L235.146 156.494C278.637 115.067 351.06 155.59 336.876 214.202L336.868 214.235C334.353 224.496 329.491 234.471 321.906 243.436L321.869 243.48C302.801 265.786 273.565 298.525 243.302 326.746C247.847 329.926 252.298 332.776 256.615 335.218C264.35 339.593 271.21 342.895 277.206 342.895C295.063 342.895 311.27 335.885 323.233 324.295C337.939 309.571 349.816 292.009 357.986 272.557L357.997 272.534C366.285 252.925 370.819 231.434 370.82 208.782C370.726 118.389 297.838 45.1048 207.949 45.1048C117.977 45.1048 45.1795 118.382 45.1795 208.771C45.1795 231.434 49.7156 252.936 57.9117 272.557C66.1832 292.014 78.0802 309.605 92.8341 324.458C104.75 335.938 120.903 342.895 138.693 342.895C144.733 342.895 151.624 339.596 159.382 335.213C163.698 332.775 168.146 329.928 172.686 326.752ZM207.995 297.921C238.43 270.185 268.312 236.647 287.499 214.203C290.244 210.933 292.05 207.301 292.975 203.548C296.585 188.524 277.937 178.583 266.608 188.872L207.951 249.617C207.951 249.617 148.985 188.565 148.945 188.529C138.317 178.878 120.318 186.838 122.42 201.287L122.425 201.322C123.069 205.849 125.051 210.297 128.401 214.204L128.424 214.232C147.562 236.705 177.526 270.19 207.995 297.921Z" fill="#1F81EB"/>
-        </svg>
+            <use href="#ovet-logo"/>
+          </svg>
           Ovet
         </div>
         <p style="margin-top:8px">Mise à jour du 15 juin 2026, à la suite de notre rencontre.</p>
