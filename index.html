@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Questionnaires Ovet — Avant / Après · Mise à jour du 15 juin 2026</title>
+<meta name="description" content="Ce qui change dans les questionnaires Ovet pour vos clients — et pourquoi. Questionnaires plus courts, moins d'abandons." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* Design system zant (packages/ui) — tons dérivés des tokens oklch */
+    --primary:#3a6df2;            /* oklch(0.65 0.2 250) */
+    --primary-strong:#2b53c9;
+    --primary-tint:#eaf0fe;
+    --primary-tint-2:#dbe6fd;
+
+    --fam-annual:#e0589a;         /* Adult — rose */
+    --fam-annual-tint:#fceaf2;
+    --fam-health:#16a06b;         /* Health problem — vert */
+    --fam-health-tint:#e6f6ee;
+    --fam-preventive:#2f8fe0;     /* Young — bleu */
+    --fam-preventive-tint:#e6f2fc;
+    --fam-suivi:var(--primary);   /* Suivi — bleu primaire */
+    --fam-suivi-tint:var(--primary-tint);
+
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --border:#e5e8ef;
+    --border-strong:#d3d8e3;
+    --heading:#131a28;
+    --text:#2a3242;
+    --muted:#646e80;
+    --muted-2:#8a93a4;
+
+    --ok:#16a06b;
+    --ok-tint:#e6f6ee;
+    --warn:#c2410c;
+    --warn-tint:#fdeee6;
+
+    --radius:0.5rem;
+    --radius-lg:0.875rem;
+    --radius-xl:1.25rem;
+    --shadow:0 1px 2px rgba(17,24,39,.05), 0 8px 24px -12px rgba(17,24,39,.18);
+    --shadow-sm:0 1px 2px rgba(17,24,39,.06);
+    --maxw:920px;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;font-family:var(--font);color:var(--text);background:var(--bg);
+    line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  h1,h2,h3{color:var(--heading);line-height:1.2;margin:0}
+  p{margin:0}
+  strong{color:var(--heading);font-weight:650}
+  small{font-size:13px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(1200px 380px at 85% -10%, rgba(58,109,242,.16), transparent 60%),
+      radial-gradient(900px 320px at 0% 0%, rgba(224,88,154,.10), transparent 55%),
+      linear-gradient(180deg,#ffffff, #f5f7fa);
+    border-bottom:1px solid var(--border);
+  }
+  .hero-inner{padding:54px 20px 46px;max-width:var(--maxw);margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--heading);letter-spacing:-.01em}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(140deg,var(--primary),#6a4df2);
+    display:grid;place-items:center;color:#fff;font-size:15px;box-shadow:var(--shadow-sm)}
+  .eyebrow{margin-top:26px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    color:var(--primary-strong);background:var(--primary-tint);border:1px solid var(--primary-tint-2);
+    padding:5px 11px;border-radius:999px}
+  h1{font-size:38px;font-weight:800;letter-spacing:-.025em;margin-top:16px;max-width:18ch}
+  .lede{margin-top:14px;font-size:18px;color:var(--muted);max-width:60ch}
+  .hero-meta{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+    padding:6px 12px;border-radius:999px;border:1px solid var(--border-strong);background:#fff;color:var(--text)}
+  .pill .ic{color:var(--primary)}
+
+  /* ---------- Sections ---------- */
+  section{padding:40px 0}
+  section + section{border-top:1px solid var(--border)}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--primary-strong)}
+  h2{font-size:26px;font-weight:750;letter-spacing:-.02em;margin-top:10px}
+  .sub{margin-top:8px;color:var(--muted);max-width:62ch;font-size:16.5px}
+
+  /* ---------- En bref callout ---------- */
+  .callout{margin-top:22px;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--primary);
+    border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow-sm)}
+  .callout p + p{margin-top:10px}
+
+  /* ---------- Metrics ---------- */
+  .metrics{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .metric{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+    padding:18px;box-shadow:var(--shadow-sm)}
+  .metric .num{font-size:30px;font-weight:800;color:var(--heading);letter-spacing:-.02em;line-height:1.05}
+  .metric .num .unit{font-size:17px;font-weight:700;color:var(--primary-strong)}
+  .metric .lab{margin-top:7px;font-size:13.5px;color:var(--muted);line-height:1.4}
+  .metric.accent{background:linear-gradient(180deg,var(--primary-tint),#fff);border-color:var(--primary-tint-2)}
+
+  /* ---------- Change lists ---------- */
+  .grid2{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm)}
+  .panel h3{font-size:16px;display:flex;align-items:center;gap:9px}
+  .tag{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
+  .tag.adult{color:var(--fam-annual);background:var(--fam-annual-tint)}
+  .tag.er{color:var(--warn);background:var(--warn-tint)}
+  .change{list-style:none;margin:14px 0 0;padding:0}
+  .change li{position:relative;padding:11px 0 11px 30px;border-top:1px dashed var(--border)}
+  .change li:first-child{border-top:0}
+  .change li::before{content:"";position:absolute;left:2px;top:16px;width:16px;height:16px;border-radius:50%;
+    background:var(--primary-tint);border:2px solid var(--primary)}
+  .change li .t{font-weight:650;color:var(--heading)}
+  .change li .d{font-size:14.5px;color:var(--muted);margin-top:2px}
+  .delta{display:inline-block;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--ok);
+    background:var(--ok-tint);padding:2px 9px;border-radius:999px}
+
+  /* ---------- Before / After cards ---------- */
+  .ba-list{margin-top:8px;display:grid;gap:18px}
+  .ba{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .ba-head{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg,#fbfcfe,#fff)}
+  .ba-idx{flex:none;width:30px;height:30px;border-radius:9px;background:var(--primary);color:#fff;font-weight:700;
+    display:grid;place-items:center;font-size:15px;box-shadow:var(--shadow-sm)}
+  .ba-title{font-weight:700;color:var(--heading);font-size:16.5px}
+  .ba-scope{margin-left:auto;font-size:12px;font-weight:600;color:var(--muted);background:#f1f3f8;
+    border:1px solid var(--border);padding:3px 10px;border-radius:999px}
+  .ba-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .ba-col{padding:18px 20px}
+  .ba-col.before{background:#fcfcfd}
+  .ba-col.after{background:linear-gradient(180deg,var(--ok-tint),#fff);border-left:1px solid var(--border)}
+  .ba-label{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.06em;margin-bottom:9px}
+  .ba-label.before{color:var(--muted-2)}
+  .ba-label.after{color:var(--ok)}
+  .ba-label .ic{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;color:#fff}
+  .ba-label.before .ic{background:var(--muted-2)}
+  .ba-label.after .ic{background:var(--ok)}
+  .ba-col p{font-size:14.5px;color:var(--text)}
+  .ba-col .lead-num{font-size:15px;font-weight:750;color:var(--heading)}
+  .chips{margin-top:11px;display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--border-strong);
+    background:#fff;color:var(--text)}
+  .chip.on{background:var(--ok-tint);border-color:#bfe6cf;color:#0f7a4f}
+  .chip.txt{background:#f4f5f8;border-style:dashed;color:var(--muted)}
+  .arrow-row{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted-2);font-size:12px;
+    font-weight:600;padding:6px}
+
+  /* ---------- Product dialog mockup (SMS) ---------- */
+  .mock-wrap{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+  .mock{background:var(--card);border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);overflow:hidden}
+  .mock .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--border);background:#fafbfd}
+  .mock .bar .lights{display:flex;gap:5px}
+  .mock .bar .lights i{width:9px;height:9px;border-radius:50%;background:#dfe3ea;display:block}
+  .mock .bar .name{font-size:12.5px;font-weight:600;color:var(--muted)}
+  .mock .body{padding:16px}
+  .mock h4{margin:0 0 4px;font-size:15px;color:var(--heading)}
+  .mock .hint{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+  .field{margin-bottom:11px}
+  .field > label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}
+  .input{height:36px;border:1px solid var(--border-strong);border-radius:8px;background:#fff;display:flex;
+    align-items:center;padding:0 11px;font-size:13.5px;color:var(--text)}
+  .input.ph{color:var(--muted-2)}
+  .input.removed{position:relative;color:var(--muted-2);background:#fbfbfc;border-style:dashed;text-decoration:line-through;
+    text-decoration-color:#e0589a;text-decoration-thickness:2px}
+  .field.removed > label{color:var(--muted-2);text-decoration:line-through;text-decoration-color:#e0589a}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .seg{display:flex;gap:6px;flex-wrap:wrap}
+  .seg .opt{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--border-strong);
+    background:#fff;color:var(--text)}
+  .opt.fam-annual{color:var(--fam-annual);background:var(--fam-annual-tint);border-color:#f3cfe0}
+  .opt.fam-health{color:var(--fam-health);background:var(--fam-health-tint);border-color:#c7ead7}
+  .opt.fam-preventive{color:var(--fam-preventive);background:var(--fam-preventive-tint);border-color:#cfe5f7}
+  .opt.fam-suivi{color:#fff;background:var(--fam-suivi);border-color:var(--fam-suivi)}
+  .note-in{margin-top:6px;font-size:12px;color:var(--fam-health);font-weight:600;display:flex;gap:6px;align-items:flex-start}
+  .btn{margin-top:6px;height:38px;border-radius:8px;background:var(--primary);color:#fff;font-weight:650;font-size:13.5px;
+    display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow-sm)}
+  .mock-cap{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .mock-cap.before{color:var(--muted-2)}
+  .mock-cap.after{color:var(--ok)}
+
+  /* ---------- Status banner ---------- */
+  .status{margin-top:18px;display:flex;gap:13px;align-items:flex-start;background:var(--primary-tint);
+    border:1px solid var(--primary-tint-2);border-radius:var(--radius-lg);padding:15px 18px}
+  .status .ic{flex:none;width:30px;height:30px;border-radius:9px;background:var(--primary);color:#fff;display:grid;place-items:center}
+  .status .txt{font-size:14.5px}
+  .status .txt b{color:var(--primary-strong)}
+
+  /* ---------- Reliability fixes ---------- */
+  .fixes{margin-top:8px;display:grid;gap:14px}
+  .fix{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .fix-head{display:flex;align-items:center;gap:11px}
+  .fix-head .ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:17px;
+    background:var(--ok-tint);color:var(--ok)}
+  .fix-head h3{font-size:16.5px}
+  .fix-head .done{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--ok);background:var(--ok-tint);
+    border:1px solid #bfe6cf;padding:3px 10px;border-radius:999px;white-space:nowrap}
+  .fix p{margin-top:10px;font-size:14.5px;color:var(--text)}
+  .fix .muted{color:var(--muted)}
+
+  /* timeline for expiration */
+  .tl{margin-top:13px;display:grid;gap:10px}
+  .tl-row{border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;background:#fcfcfd}
+  .tl-row.bad{border-color:#f0d2c4;background:var(--warn-tint)}
+  .tl-row.good{border-color:#bfe6cf;background:var(--ok-tint)}
+  .tl-row .h{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .tl-row.bad .h{color:var(--warn)}
+  .tl-row.good .h{color:var(--ok)}
+  .steps{display:flex;flex-wrap:wrap;align-items:center;gap:7px;font-size:13px}
+  .step{background:#fff;border:1px solid var(--border-strong);border-radius:7px;padding:5px 9px;font-weight:600;color:var(--text)}
+  .step .sub{display:block;font-size:11px;font-weight:500;color:var(--muted)}
+  .sep{color:var(--muted-2);font-weight:700}
+  .step.dead{color:var(--warn);border-color:#f0d2c4;background:#fff}
+  .step.live{color:#0f7a4f;border-color:#bfe6cf;background:#fff}
+
+  /* ---------- Implications ---------- */
+  .impl{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .impl .it{display:flex;gap:11px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:14px 16px;box-shadow:var(--shadow-sm)}
+  .impl .it .ic{flex:none;width:24px;height:24px;border-radius:7px;background:var(--primary-tint);color:var(--primary-strong);
+    display:grid;place-items:center;font-size:13px;font-weight:800;margin-top:1px}
+  .impl .it p{font-size:14.5px}
+
+  /* ---------- Footer ---------- */
+  footer{padding:30px 0 50px;border-top:1px solid var(--border);color:var(--muted);font-size:13.5px}
+  .foot-grid{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .ref{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted-2);
+    background:#fff;border:1px solid var(--border);border-radius:7px;padding:5px 10px}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:760px){
+    h1{font-size:30px}
+    .metrics{grid-template-columns:1fr 1fr}
+    .grid2,.mock-wrap,.impl{grid-template-columns:1fr}
+    .ba-body{grid-template-columns:1fr}
+    .ba-col.after{border-left:0;border-top:1px solid var(--border)}
+  }
+  @media (max-width:430px){
+    .metrics{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand"><span class="dot">◆</span> Ovet</div>
+      <div class="eyebrow">🔁 Mise à jour du 15 juin 2026 · après notre rencontre</div>
+      <h1>Des questionnaires plus courts, et beaucoup moins d'abandons</h1>
+      <p class="lede">Suite à notre rencontre de ce matin, voici un récapitulatif clair de ce qui change pour vos clients qui remplissent un questionnaire — et de ce qu'on livre cette semaine. Rien de technique : juste l'expérience vécue, avant et après.</p>
+      <div class="hero-meta">
+        <span class="pill"><span class="ic">🤝</span> Suivi de notre rencontre</span>
+        <span class="pill"><span class="ic">🐾</span> Pour nos cliniques partenaires</span>
+        <span class="pill"><span class="ic">📊</span> Basé sur les données réelles de production</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- EN BREF -->
+    <section id="bref">
+      <span class="kicker">📌 En bref</span>
+      <h2>Le questionnaire adulte était vraiment trop long</h2>
+      <div class="callout">
+        <p>Nos données réelles l'ont confirmé : le questionnaire pour animal adulte comptait environ <strong>65 questions</strong> et prenait <strong>~10 minutes</strong>. Surtout, <strong>45 questions étaient posées à tout le monde</strong> avant la moindre personnalisation. Résultat : les propriétaires abandonnaient en plein milieu — le plus souvent dans le bloc « revue des systèmes ».</p>
+        <p>Les changements ci-dessous <strong>raccourcissent le questionnaire vécu</strong> : on ne pose une question de dépistage que lorsqu'elle est pertinente, on fusionne les questions qui se répètent, et on remplace la saisie au clavier par des choix à cocher.</p>
+      </div>
+
+      <div class="metrics">
+        <div class="metric accent">
+          <div class="num">74<span class="unit"> %</span></div>
+          <div class="lab">complètent le questionnaire une fois commencé <small>(242 → 178)</small></div>
+        </div>
+        <div class="metric">
+          <div class="num">45</div>
+          <div class="lab">questions posées à tous <em>avant</em> toute personnalisation (adulte)</div>
+        </div>
+        <div class="metric">
+          <div class="num">17<span class="unit">ᵉ</span></div>
+          <div class="lab">question où l'abandon survient le plus souvent</div>
+        </div>
+        <div class="metric">
+          <div class="num">33</div>
+          <div class="lab">nouveau plancher pour un animal en santé <small>(avant&nbsp;: 45)</small></div>
+        </div>
+        <div class="metric accent">
+          <div class="num">−15 à 20<span class="unit"> %</span></div>
+          <div class="lab">de longueur vécue en moins (questionnaire adulte)</div>
+        </div>
+        <div class="metric">
+          <div class="num">5</div>
+          <div class="lab">améliorations livrées + 3 correctifs de fiabilité</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CE QUI CHANGE -->
+    <section id="change">
+      <span class="kicker">✅ Ce qui a été fait</span>
+      <h2>On ne pose plus une question que lorsqu'elle est utile</h2>
+      <p class="sub">Deux questionnaires concernés : le bilan de l'animal adulte, et l'urgence.</p>
+
+      <div class="grid2">
+        <div class="panel">
+          <h3>Questionnaire adulte <span class="tag adult">Bilan annuel</span></h3>
+          <ul class="change">
+            <li>
+              <div class="t">Filtre « revue des systèmes »</div>
+              <div class="d">Les 13 questions de dépistage posées à chaque animal sont regroupées derrière <strong>une seule question filtre</strong>. On n'ouvre que les sujets cochés.</div>
+              <span class="delta">plancher 45 → 33</span>
+            </li>
+            <li>
+              <div class="t">Fusion hygiène / dentaire</div>
+              <div class="d">Brossage des dents + autres moyens d'hygiène + coupe des griffes deviennent <strong>une seule question</strong>.</div>
+              <span class="delta">3 questions → 1</span>
+            </li>
+            <li>
+              <div class="t">Texte libre → choix</div>
+              <div class="d">Marque de nourriture et compagnie d'assurance deviennent des <strong>listes</strong> (avec « Autre » et « Je ne sais pas »).</div>
+            </li>
+            <li>
+              <div class="t">Clinique consultée → autocomplétion</div>
+              <div class="d">Le nom de la clinique n'est plus tapé à la main : <strong>autocomplétion Google Maps</strong>.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Questionnaire urgence <span class="tag er">Urgence</span></h3>
+          <ul class="change">
+            <li>
+              <div class="t">Moins de saisie pour les tuteurs stressés</div>
+              <div class="d">Les questions sur le moment de l'incident deviennent des <strong>plages horaires à cocher</strong>, au lieu d'un champ à taper.</div>
+            </li>
+            <li>
+              <div class="t">Branche « autre vétérinaire »</div>
+              <div class="d">C'était <strong>déjà une liste à cocher</strong> : rien à changer de ce côté.</div>
+            </li>
+          </ul>
+          <div class="status" style="margin-top:18px">
+            <span class="ic">💡</span>
+            <span class="txt">L'urgence est le moment où la saisie au clavier est la plus pénible. C'est là qu'on retire le plus de friction.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AVANT / APRÈS -->
+    <section id="avant-apres">
+      <span class="kicker">🔍 Avant / Après</span>
+      <h2>Cinq exemples concrets</h2>
+      <p class="sub">Voici, côte à côte, ce que le client voyait avant et ce qu'il voit maintenant.</p>
+
+      <div class="ba-list" style="margin-top:22px">
+
+        <!-- 1 -->
+        <article class="ba">
+          <div class="ba-head">
+            <span class="ba-idx">1</span>
+            <span class="ba-title">Revue des systèmes</span>
+            <span class="ba-scope">Chat en santé</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-col before">
+              <span class="ba-label before"><span class="ic">×</span> Avant</span>
+              <p>Le tuteur répond aux <span class="lead-num">13 questions</span>, peu importe leur pertinence&nbsp;: poids, silhouette, urine, sang dans les selles/urine, énergie, comportement, réaction en clinique, mobilité, grattage, lésions cutanées, brossage des dents, hygiène dentaire, coupe des griffes.</p>
+            </div>
+            <div class="ba-col after">
+              <span class="ba-label after"><span class="ic">✓</span> Après</span>
+              <p><span class="lead-num">1 seule question filtre</span>&nbsp;: « Des préoccupations dans l'un de ces domaines? »</p>
+              <div class="chips">
+                <span class="chip">Poids</span><span class="chip">Urine / selles</span><span class="chip">Peau</span>
+                <span class="chip">Comportement</span><span class="chip">Mobilité</span><span class="chip">Dents / hygiène</span>
+                <span class="chip on">✓ Aucune préoccupation</span>
+              </div>
+              <p style="margin-top:11px">Si « Aucune » → les 13 questions sont <strong>sautées</strong> d'un seul geste. Sinon, seuls les sujets cochés s'ouvrent.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="ba">
+          <div class="ba-head">
+            <span class="ba-idx">2</span>
+            <span class="ba-title">Soins dentaires et d'hygiène</span>
+            <span class="ba-scope">Adulte</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-col before">
+              <span class="ba-label before"><span class="ic">×</span> Avant</span>
+              <p><span class="lead-num">3 questions séparées</span>&nbsp;:</p>
+              <div class="chips">
+                <span class="chip txt">Brossez-vous les dents?</span>
+                <span class="chip txt">Autres moyens d'hygiène?</span>
+                <span class="chip txt">Coupez-vous les griffes?</span>
+              </div>
+            </div>
+            <div class="ba-col after">
+              <span class="ba-label after"><span class="ic">✓</span> Après</span>
+              <p><span class="lead-num">1 question</span> à choix multiples&nbsp;:</p>
+              <div class="chips">
+                <span class="chip">Brossage</span><span class="chip">Friandises / jouets dentaires</span>
+                <span class="chip">Diète dentaire</span><span class="chip">Additif dans l'eau</span>
+                <span class="chip">Coupe des griffes</span><span class="chip on">Aucun</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="ba">
+          <div class="ba-head">
+            <span class="ba-idx">3</span>
+            <span class="ba-title">Marque de nourriture</span>
+            <span class="ba-scope">Adulte</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-col before">
+              <span class="ba-label before"><span class="ic">×</span> Avant</span>
+              <p>« Quelle marque de nourriture? »</p>
+              <div class="chips"><span class="chip txt">⌨︎ Champ texte à taper</span></div>
+            </div>
+            <div class="ba-col after">
+              <span class="ba-label after"><span class="ic">✓</span> Après</span>
+              <p>Une <span class="lead-num">liste</span> à choisir&nbsp;:</p>
+              <div class="chips">
+                <span class="chip">Royal Canin</span><span class="chip">Hill's</span><span class="chip">Purina</span>
+                <span class="chip">Iams</span><span class="chip">Acana / Orijen</span><span class="chip">Nutrience</span>
+                <span class="chip">Diète vétérinaire</span><span class="chip">Cru / fait maison</span>
+                <span class="chip on">Autre</span><span class="chip on">Je ne sais pas</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="ba">
+          <div class="ba-head">
+            <span class="ba-idx">4</span>
+            <span class="ba-title">Clinique consultée</span>
+            <span class="ba-scope">Adulte</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-col before">
+              <span class="ba-label before"><span class="ic">×</span> Avant</span>
+              <p>« Dans quelle clinique? »</p>
+              <div class="chips"><span class="chip txt">⌨︎ Nom tapé à la main</span></div>
+            </div>
+            <div class="ba-col after">
+              <span class="ba-label after"><span class="ic">✓</span> Après</span>
+              <p><span class="lead-num">Autocomplétion Google Maps</span>&nbsp;: on tape les premières lettres → on choisit la clinique dans la liste.</p>
+              <div class="chips">
+                <span class="chip">🔎 Clini…</span><span class="chip on">Clinique vétérinaire …</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="ba">
+          <div class="ba-head">
+            <span class="ba-idx">5</span>
+            <span class="ba-title">Moment de l'incident</span>
+            <span class="ba-scope">Urgence</span>
+          </div>
+          <div class="ba-body">
+            <div class="ba-col before">
+              <span class="ba-label before"><span class="ic">×</span> Avant</span>
+              <p>« Quand l'incident s'est-il produit? » — <strong>en pleine urgence</strong>.</p>
+              <div class="chips"><span class="chip txt">⌨︎ Champ texte à taper</span></div>
+            </div>
+            <div class="ba-col after">
+              <span class="ba-label after"><span class="ic">✓</span> Après</span>
+              <p>Des <span class="lead-num">plages à cocher</span>&nbsp;:</p>
+              <div class="chips">
+                <span class="chip">À l'instant</span><span class="chip">Il y a quelques heures</span>
+                <span class="chip">Aujourd'hui</span><span class="chip">Hier</span>
+                <span class="chip">Il y a quelques jours</span><span class="chip">+ d'une semaine</span>
+                <span class="chip on">Je ne sais pas</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SUITE À NOTRE RENCONTRE -->
+    <section id="suite">
+      <span class="kicker">🤝 Suite à notre rencontre</span>
+      <h2>Ce qu'on livre cette semaine</h2>
+      <p class="sub">Trois demandes ressorties ce matin — déjà en cours.</p>
+
+      <h3 style="margin-top:26px;font-size:18px">1 · Envoyer un questionnaire devient plus rapide pour la réception</h3>
+      <p class="sub" style="margin-top:6px">On retire « espèce » (chien&nbsp;/&nbsp;chat) et « sexe » du formulaire d'envoi. On garde le nom du client, le numéro et <strong>le nom de l'animal</strong> — essentiel pour associer le bon dossier (et le nom apparaît maintenant dans le texto, pratique quand un client a plusieurs animaux).</p>
+
+      <div class="mock-wrap">
+        <!-- AVANT -->
+        <div>
+          <div class="mock-cap before">× Avant — plusieurs champs à saisir</div>
+          <div class="mock">
+            <div class="bar"><span class="lights"><i></i><i></i><i></i></span><span class="name">Envoyer un questionnaire</span></div>
+            <div class="body">
+              <div class="two">
+                <div class="field"><label>Prénom du client</label><div class="input ph">Marie</div></div>
+                <div class="field"><label>Nom de famille</label><div class="input ph">Tremblay</div></div>
+              </div>
+              <div class="field"><label>Nom de l'animal</label><div class="input ph">Mylo</div></div>
+              <div class="two">
+                <div class="field"><label>Espèce</label><div class="input ph">Chien / Chat</div></div>
+                <div class="field"><label>Sexe</label><div class="input ph">Mâle / Femelle</div></div>
+              </div>
+              <div class="field"><label>Type de questionnaire</label>
+                <div class="seg">
+                  <span class="opt fam-annual">Adulte</span>
+                  <span class="opt fam-health">Problème de santé</span>
+                  <span class="opt fam-preventive">Jeune</span>
+                </div>
+              </div>
+              <div class="field"><label>Numéro de téléphone</label><div class="input ph">(514) 000-0000</div></div>
+              <div class="btn">Envoyer le SMS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APRÈS -->
+        <div>
+          <div class="mock-cap after">✓ Après — moins de champs</div>
+          <div class="mock">
+            <div class="bar"><span class="lights"><i></i><i></i><i></i></span><span class="name">Envoyer un questionnaire</span></div>
+            <div class="body">
+              <div class="field removed"><label>Espèce &nbsp;·&nbsp; Sexe</label><div class="input removed">Chien&nbsp;&nbsp;·&nbsp;&nbsp;Mâle</div></div>
+              <div class="note-in">↳ Plus demandés à la réception — autant de moins à remplir</div>
+              <div class="field" style="margin-top:13px"><label>Nom du client</label><div class="input ph">Marie Tremblay</div></div>
+              <div class="field"><label>Nom de l'animal <span style="color:var(--ok);font-weight:700">· conservé</span></label><div class="input" style="border-color:#bfe6cf;background:var(--ok-tint);color:#0f7a4f">Mylo</div></div>
+              <div class="field"><label>Type de questionnaire</label>
+                <div class="seg">
+                  <span class="opt fam-annual">Adulte</span>
+                  <span class="opt fam-health">Problème de santé</span>
+                  <span class="opt fam-preventive">Jeune</span>
+                  <span class="opt fam-suivi">Suivi · nouveau</span>
+                </div>
+              </div>
+              <div class="field"><label>Numéro de téléphone</label><div class="input ph">(514) 000-0000</div></div>
+              <div class="btn">Envoyer le SMS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:24px">
+        <div class="panel">
+          <h3><span class="tag" style="color:#fff;background:var(--fam-suivi)">Nouveau</span> &nbsp;2 · Questionnaire « Suivi »</h3>
+          <p style="margin-top:12px;font-size:14.5px;color:var(--text)">Un questionnaire <strong>court</strong> pour les rendez-vous de suivi (réaction à un médicament, suivi d'oreille, de plaie…). Il part de zéro, <strong>ne repose pas</strong> les questions déjà répondues (statut vaccinal, etc.) et va droit au but&nbsp;: est-ce que ça s'est amélioré? la médication a-t-elle bien été prise?</p>
+        </div>
+        <div class="panel">
+          <h3><span class="tag" style="color:#fff;background:var(--fam-suivi)">Nouveau</span> &nbsp;3 · Un espace pour préciser</h3>
+          <p style="margin-top:12px;font-size:14.5px;color:var(--text)">À la fin du questionnaire, une question ouverte permet au client d'<strong>ajouter une précision</strong> ou de corriger une réponse précédente (par exemple «&nbsp;mon chat va dehors&nbsp;»). Une seule question en plus, plutôt que d'alourdir chaque étape.</p>
+        </div>
+      </div>
+
+      <div class="status">
+        <span class="ic">🧪</span>
+        <span class="txt"><b>Statut</b> — preuve de concept réalisée ; le travail sur l'anamnèse (le résumé pour le vétérinaire) est en cours. Livré <b>d'ici la fin de la semaine</b>. Vos retours en fin de semaine nous aideront à ajuster.</span>
+      </div>
+    </section>
+
+    <!-- CORRECTIONS DE FIABILITÉ -->
+    <section id="fiabilite">
+      <span class="kicker">🛠️ Corrections de fiabilité</span>
+      <h2>Trois problèmes réglés — déjà en ligne</h2>
+      <p class="sub">En plus du contenu, on a corrigé trois irritants qui empêchaient parfois un client de remplir son questionnaire.</p>
+
+      <div class="fixes" style="margin-top:22px">
+
+        <div class="fix">
+          <div class="fix-head">
+            <span class="ic">🔗</span>
+            <h3>Réutilisation du lien</h3>
+            <span class="done">✓ En ligne depuis le 10 juin</span>
+          </div>
+          <p>Le lien n'est plus à usage unique. Un client peut maintenant le <strong>rouvrir plusieurs fois</strong> avec le même SMS&nbsp;: il peut interrompre sa saisie et y revenir plus tard, ou simplement recommencer. Le lien reste réutilisable jusqu'à <strong>10 ouvertures</strong>.</p>
+        </div>
+
+        <div class="fix">
+          <div class="fix-head">
+            <span class="ic">⏱️</span>
+            <h3>Expiration des liens</h3>
+            <span class="done">✓ Réglé</span>
+          </div>
+          <p>Le compte à rebours démarre maintenant <strong>au moment de l'envoi du SMS</strong>, et non à la création du lien.</p>
+          <div class="tl">
+            <div class="tl-row bad">
+              <div class="h">× Avant — le lien pouvait être déjà mort</div>
+              <div class="steps">
+                <span class="step">Lien créé<span class="sub">lundi 9 h</span></span>
+                <span class="sep">→</span>
+                <span class="step dead">Expiré<span class="sub">mercredi 9 h</span></span>
+                <span class="sep">→</span>
+                <span class="step">SMS envoyé<span class="sub">jeudi 17 h</span></span>
+                <span class="sep">→</span>
+                <span class="step dead">Erreur ✕<span class="sub">vendredi</span></span>
+              </div>
+            </div>
+            <div class="tl-row good">
+              <div class="h">✓ Après — 48 h à partir du SMS</div>
+              <div class="steps">
+                <span class="step">Lien créé<span class="sub">lundi 9 h · rien ne démarre</span></span>
+                <span class="sep">→</span>
+                <span class="step">SMS envoyé<span class="sub">jeudi 17 h · départ des 48 h</span></span>
+                <span class="sep">→</span>
+                <span class="step live">Valide<span class="sub">jusqu'à samedi 17 h</span></span>
+              </div>
+            </div>
+          </div>
+          <p class="muted" style="margin-top:10px">≈&nbsp;300 liens déjà envoyés ont aussi été corrigés <strong>rétroactivement</strong> — ceux qui paraissaient échus redeviennent valides.</p>
+        </div>
+
+        <div class="fix">
+          <div class="fix-head">
+            <span class="ic">🧩</span>
+            <h3>Formulaires qui se bloquaient</h3>
+            <span class="done">✓ Cause trouvée et corrigée</span>
+          </div>
+          <p>La source a été identifiée. Dans certains cas, une étape échouait en arrière-plan <strong>sans aucun message</strong>&nbsp;: le formulaire restait figé derrière l'indicateur de chargement, et plus rien ne se passait. C'est maintenant corrigé.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- IMPLICATIONS -->
+    <section id="implications">
+      <span class="kicker">🎯 Ce que ça change concrètement</span>
+      <h2>Pour vos clients, et pour votre équipe</h2>
+      <div class="impl">
+        <div class="it"><span class="ic">1</span><p><strong>Longueur vécue réduite de 15 à 20 %</strong> sur le questionnaire adulte — le gain principal.</p></div>
+        <div class="it"><span class="ic">2</span><p>On retire <strong>exactement la section où les gens abandonnaient</strong> (le milieu « revue des systèmes »).</p></div>
+        <div class="it"><span class="ic">3</span><p><strong>Beaucoup moins de saisie au clavier</strong> — le format le plus pénible sur un téléphone, surtout en urgence.</p></div>
+        <div class="it"><span class="ic">4</span><p>Les réponses deviennent <strong>structurées</strong> → plus faciles à lire pour l'équipe et pour générer l'anamnèse.</p></div>
+        <div class="it"><span class="ic">5</span><p>Un animal en santé peut <strong>cocher « Aucune préoccupation » et tout sauter</strong> en un seul geste.</p></div>
+        <div class="it"><span class="ic">6</span><p>Un lien <strong>réutilisable et valide plus longtemps</strong> → moins de clients bloqués.</p></div>
+      </div>
+    </section>
+
+    <!-- À L'ÉTUDE -->
+    <section id="etude">
+      <span class="kicker">🔭 À l'étude — pour la suite</span>
+      <h2>Vos autres idées, notées</h2>
+      <p class="sub">Discutées ce matin, à planifier après les livraisons de cette semaine.</p>
+      <div class="impl">
+        <div class="it"><span class="ic">📎</span><p><strong>Pièces jointes</strong> — joindre une photo ou un document à la fin du questionnaire (utile pour le triage et les suivis).</p></div>
+        <div class="it"><span class="ic">🔖</span><p><strong>Micropuce</strong> — l'ajouter aux points de soin pour éviter les oublis sur les certificats de vaccination.</p></div>
+        <div class="it"><span class="ic">🐰</span><p><strong>Animaux exotiques</strong> — enrichir l'arbre de questions à partir des formulaires du département d'Anjou.</p></div>
+        <div class="it"><span class="ic">🧩</span><p><strong>Anamnèse partielle</strong> — générer un résumé même si le questionnaire n'est pas entièrement terminé.</p></div>
+        <div class="it"><span class="ic">📝</span><p><strong>Anamnèse plus visuelle</strong> — sections « mode de vie » en puces plutôt qu'en longs paragraphes.</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="font-size:15px"><span class="dot" style="width:22px;height:22px;font-size:13px">◆</span> Ovet</div>
+        <p style="margin-top:8px">Mise à jour du 15 juin 2026 — après notre rencontre.</p>
+      </div>
+      <span class="ref">Réf. technique · PR #309 — moteur de questionnaires</span>
+    </div>
+  </footer>
+
+</body>
+</html>
